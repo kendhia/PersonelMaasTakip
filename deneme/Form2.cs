@@ -73,14 +73,22 @@ namespace deneme
 
         private personels GetPersonels()
         {
-            String name = nameTextBox.Text;
-            String surName = surnameTextBox.Text;
-            int salary = Convert.ToInt32(salaryTextBox.Text);
-            int bonus = Convert.ToInt32(bonusTextBox.Text);
-            String sex = sexComboBox.Text;
-            int age = Convert.ToInt32(ageComboBox.Text);
-            String lastLogin = dateTimePicker1.Value.ToUniversalTime().ToString();
-            return new personels(name, surName, surName, "123456", salary, bonus, lastLogin, sex, age);
+            try
+            {
+                String name = nameTextBox.Text;
+                String surName = surnameTextBox.Text;
+                int salary = Convert.ToInt32(salaryTextBox.Text);
+                int bonus = Convert.ToInt32(bonusTextBox.Text);
+                String sex = sexComboBox.Text;
+                int age = Convert.ToInt32(ageComboBox.Text);
+                String lastLogin = dateTimePicker1.Value.ToUniversalTime().ToString();
+                return new personels(name, surName, surName, "123456", salary, bonus, lastLogin, sex, age);
+            } catch (Exception e)
+            {
+                MessageBox.Show("bir hata olmustur.");
+            }
+
+            return null;
 
 
         }
@@ -101,6 +109,7 @@ namespace deneme
             ageComboBox.Text = "";
             sexComboBox.Text = "";
             dateTimePicker1.Text = "";
+            idTextBox.Text = "";
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -120,7 +129,7 @@ namespace deneme
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            personels myObject = GetPersonels(); // passed in 
+            personels myObject = GetPersonels();
             myObject.Id = new MongoDB.Bson.ObjectId(idTextBox.Text);
          
             var filter = Builders<personels>.Filter.Eq(s => s.Id, myObject.Id);
