@@ -24,8 +24,8 @@ namespace deneme
 			List<kullanicilar> list = collection.AsQueryable().ToList<kullanicilar>();
 			var sonuc = collection.Find(x => x.KullaniciAdi == textBox1.Text).ToList();
 			var sonuc2 = collection.Find(x => x.Password == textBox2.Text).ToList();
-			var sonuc3 = collection.Find(x => x.KullaniciAdi == textBox1.Text).ToList();
-			var sonuc4 = collection.Find(x => x.Password == textBox2.Text).ToList();
+			var sonuc3 = collection1.Find(x => x.KullaniciAdi == textBox1.Text).ToList();
+			var sonuc4 = collection1.Find(x => x.Password == textBox2.Text).ToList();
 
 			if (sonuc.Count > 0 && sonuc2.Count > 0 && radioButton1.Checked==true)
 			{
@@ -34,7 +34,7 @@ namespace deneme
 				frm2.Show();
 
 			}
-			else if (sonuc.Count > 0 && sonuc2.Count > 0 && radioButton2.Checked == true)
+			else if (sonuc3.Count > 0 && sonuc4.Count > 0 && radioButton2.Checked == true)
 			{
 				this.Hide();
 				Form3 frm3 = new Form3();
