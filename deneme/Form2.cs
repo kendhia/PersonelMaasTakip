@@ -20,20 +20,65 @@ namespace deneme
 		static MongoClient client = new MongoClient();
 		static IMongoDatabase db = client.GetDatabase("personeltakip");
 		static IMongoCollection<personels> collection = db.GetCollection<personels>("personeller");
-        private String id;
+        static IMongoCollection<Complaint> complaints = db.GetCollection<Complaint>("complaints");
+        private bool v;
+        private personels personels;
+        private bool admin = true;
 
-        public Form2()
+        public Form2(Boolean yonetici, String pId)
 		{
-			InitializeComponent();
-			List<personels> list = collection.AsQueryable().ToList<personels>();
-			dataGridView2.DataSource = list;
+
+          
+
+            InitializeComponent();
+            if (!yonetici)
+            {
+                admin = false;
+                this.tabControl1.TabPages.Remove(tabPage1);
+                dataGridView1.Visible = false;
+                var resP = collection.Find(x => x.Id == new MongoDB.Bson.ObjectId(pId)).ToList();
+                if (resP.Count > 0)
+                {
+
+                    nameTextBox.Text = resP[0].Name;
+                    surnameTextBox.Text = resP[0].LastName;
+                    salaryTextBox.Text = resP[0].Maas.ToString();
+                    salaryTextBox.Enabled = false;
+                    bonusTextBox.Text = resP[0].Prim.ToString();
+                    bonusTextBox.Enabled = false;
+                    ageComboBox.Text = resP[0].age.ToString();
+                    sexComboBox.Text = resP[0].sex.ToString();
+                    idTextBox.Text = resP[0].Id.ToString();
+                    idTextBox.Enabled = false;
+                    addNewButton.Visible = false;
+                    dataGridView1.Visible = false;
+                    complaintsDataGridView.Visible = false;
+                }
+
+            }
+            else
+            {
+                List<personels> list = collection.AsQueryable().ToList<personels>();
+                List<Complaint> listOfComplaints = complaints.AsQueryable().ToList<Complaint>();
+                dataGridView2.DataSource = list;
+                button6.Visible = false;
+                textBox1.Visible = false;
+                label1.Visible = false;
+                complaintsDataGridView.DataSource = listOfComplaints;
+            }
+
 		}
+
+    
 
         private void updateData()
         {
-           collection = db.GetCollection<personels>("personeller");
-            List<personels> list = collection.AsQueryable().ToList<personels>();
-            dataGridView2.DataSource = list;
+            if (admin)
+            {
+                collection = db.GetCollection<personels>("personeller");
+                List<personels> list = collection.AsQueryable().ToList<personels>();
+                dataGridView2.DataSource = list;
+            }
 
         }
 		
@@ -137,6 +182,35 @@ namespace deneme
             var result =  collection.ReplaceOne(filter, myObject);
             updateData();
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.tabControl1.TabPages.Remove(tabPage1);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            complaints.InsertOne(new Complaint(textBox1.Text, nameTextBox.Text));
+            MessageBox.Show("Your message has been delivered.");
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            Form1 frm = new Form1();
+            frm.Show();
+            this.Close();
         }
     }
 }

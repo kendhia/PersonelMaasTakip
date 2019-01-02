@@ -30,15 +30,15 @@ namespace deneme
 			if (sonuc.Count > 0 && sonuc2.Count > 0 && radioButton1.Checked==true)
 			{
 				this.Hide();
-				Form2 frm2 = new Form2();
+				Form2 frm2 = new Form2(true, "");
 				frm2.Show();
 
 			}
 			else if (sonuc3.Count > 0 && sonuc4.Count > 0 && radioButton2.Checked == true)
 			{
 				this.Hide();
-				Form3 frm3 = new Form3();
-				frm3.Show();
+				Form2 frm2 = new Form2(false, sonuc3[0].Id.ToString());
+				frm2.Show();
 
 			}
 			else { MessageBox.Show("Yanlış kullanıcı adı veya parola"); }

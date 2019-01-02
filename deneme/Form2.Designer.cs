@@ -71,23 +71,26 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.personelTakipDataSet = new deneme.personelTakipDataSet();
             this.kulanicilarBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.kulanicilarTableAdapter = new deneme.personelTakipDataSetTableAdapters.kulanicilarTableAdapter();
-            this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.complaintsDataGridView = new System.Windows.Forms.DataGridView();
+            this.logoutButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personelTakipDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kulanicilarBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.complaintsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -214,6 +217,7 @@
             this.button5.TabIndex = 16;
             this.button5.Text = "ARA";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // tabControl1
             // 
@@ -261,6 +265,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(705, 175);
             this.dataGridView1.TabIndex = 19;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // radioButton2
             // 
@@ -496,14 +501,6 @@
             this.pictureBox.TabStop = false;
             this.pictureBox.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(752, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(236, 186);
-            this.pictureBox1.TabIndex = 20;
-            this.pictureBox1.TabStop = false;
-            // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
@@ -522,22 +519,63 @@
             // 
             this.kulanicilarTableAdapter.ClearBeforeFill = true;
             // 
-            // label7
+            // label1
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(773, 225);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(46, 17);
-            this.label7.TabIndex = 21;
-            this.label7.Text = "AKTİF";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(777, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 17);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Write to admin";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(798, 37);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(360, 239);
+            this.textBox1.TabIndex = 23;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(1032, 12);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(115, 23);
+            this.button6.TabIndex = 26;
+            this.button6.Text = "Send";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click_1);
+            // 
+            // complaintsDataGridView
+            // 
+            this.complaintsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.complaintsDataGridView.Location = new System.Drawing.Point(798, 282);
+            this.complaintsDataGridView.Name = "complaintsDataGridView";
+            this.complaintsDataGridView.RowTemplate.Height = 24;
+            this.complaintsDataGridView.Size = new System.Drawing.Size(360, 229);
+            this.complaintsDataGridView.TabIndex = 27;
+            // 
+            // logoutButton
+            // 
+            this.logoutButton.Location = new System.Drawing.Point(1072, 556);
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.Size = new System.Drawing.Size(75, 23);
+            this.logoutButton.TabIndex = 28;
+            this.logoutButton.Text = "Log out";
+            this.logoutButton.UseVisualStyleBackColor = true;
+            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1179, 621);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.logoutButton);
+            this.Controls.Add(this.complaintsDataGridView);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form2";
             this.Text = "Form2";
@@ -550,10 +588,10 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personelTakipDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kulanicilarBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.complaintsDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -579,7 +617,6 @@
 		private System.Windows.Forms.TabPage tabPage1;
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.TabPage tabPage2;
-		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.ErrorProvider errorProvider1;
 		private System.Windows.Forms.ToolTip toolTip1;
 		private personelTakipDataSet personelTakipDataSet;
@@ -605,9 +642,13 @@
 		private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.MaskedTextBox idTextBox;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button addNewButton;
         private System.Windows.Forms.MaskedTextBox bonusTextBox;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView complaintsDataGridView;
+        private System.Windows.Forms.Button logoutButton;
     }
 }
